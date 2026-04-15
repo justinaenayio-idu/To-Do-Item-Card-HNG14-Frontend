@@ -83,7 +83,7 @@ Clone the repo and serve with any static file server:
 
 ```bash
 git clone https://github.com/justinaenayio-idu/HNG14-FrontendTrack-Task.git
-cd HNG14-FrontendTrack-Task
+
 npx serve .
 ```
 
