@@ -17,9 +17,9 @@ A clean, accessible, spec-compliant Todo Item Card built with vanilla HTML, CSS,
 ## Project Structure
 
 HNG14-FrontendTrack-Task/
-├── index.html      # Card markup — all data-testid attributes, semantic HTML
-├── styles.css      # Design system — dark theme, responsive layout, animations
-└── app.js          # Behaviour — time remaining, checkbox toggle, edit, delete
+├── index.html       # Card markup — all data-testid attributes, semantic HTML
+├── index.css        # Design system — dark theme, responsive layout, animations
+└── index.js         # Behaviour — time remaining, checkbox toggle, edit, delete
 
 
 ## Features
