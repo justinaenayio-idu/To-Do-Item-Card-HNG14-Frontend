@@ -1,0 +1,394 @@
+/* ================================================================
+   TODO ITEM CARD — styles.css
+   Theme  : Dark slate surface · electric teal accent
+   Fonts  : Syne (display headings) · Instrument Sans (body/UI)
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=Instrument+Sans:wght@400;500;600&display=swap');
+
+/* ── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Design tokens ──────────────────────────────────────────── */
+:root {
+  /* Palette */
+  --page-bg      : #0f1117;
+  --card-bg      : #181c27;
+  --card-border  : rgba(255, 255, 255, 0.08);
+  --card-border-h: rgba(255, 255, 255, 0.14);
+
+  --ink-1        : #edf0f7;   /* primary text   */
+  --ink-2        : #9198ac;   /* secondary text */
+  --ink-3        : #6e7690;   /* hint / muted — 3.1:1 on card bg */
+
+  --teal         : #28d9b0;   /* accent         */
+  --teal-dim     : rgba(40, 217, 176, 0.12);
+  --teal-bdr     : rgba(40, 217, 176, 0.35);
+
+  --red          : #f06060;
+  --red-dim      : rgba(240, 96, 96, 0.10);
+  --red-bdr      : rgba(240, 96, 96, 0.30);
+
+  --amber        : #f0a840;
+  --amber-dim    : rgba(240, 168, 64, 0.12);
+  --amber-bdr    : rgba(240, 168, 64, 0.30);
+
+  --blue         : #60a8f0;
+  --blue-dim     : rgba(96, 168, 240, 0.10);
+  --blue-bdr     : rgba(96, 168, 240, 0.28);
+
+  --green        : #50c878;
+  --green-dim    : rgba(80, 200, 120, 0.10);
+  --green-bdr    : rgba(80, 200, 120, 0.28);
+
+  /* Shape */
+  --r-sm   : 6px;
+  --r-md   : 10px;
+  --r-lg   : 16px;
+  --r-full : 999px;
+
+  /* Motion */
+  --ease   : 0.18s ease;
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+html, body {
+  min-height : 100vh;
+}
+
+body {
+  font-family : 'Instrument Sans', system-ui, sans-serif;
+  background  : var(--page-bg);
+  color       : var(--ink-1);
+  font-size   : 15px;
+  line-height : 1.55;
+
+  /* Subtle grid texture on the page background */
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ── Page layout ────────────────────────────────────────────── */
+.page {
+  min-height      : 100vh;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  padding         : 2rem 1rem;
+}
+
+/* ── Card ───────────────────────────────────────────────────── */
+.card {
+  background    : var(--card-bg);
+  border        : 1px solid var(--card-border);
+  border-radius : var(--r-lg);
+  padding       : 1.75rem;
+  width         : 100%;
+  max-width     : 480px;
+
+  /* Layered shadow for depth */
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.04) inset,
+    0 2px 8px rgba(0,0,0,.35),
+    0 12px 40px rgba(0,0,0,.30);
+
+  /* Entrance animation */
+  animation: cardIn 0.28s cubic-bezier(.22,.68,0,1.2) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);   }
+}
+
+.card:hover {
+  border-color: var(--card-border-h);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    0 4px 16px rgba(0,0,0,.4),
+    0 20px 60px rgba(0,0,0,.35);
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+
+/* ── Top row: checkbox + title block ────────────────────────── */
+.card-top {
+  display       : flex;
+  align-items   : flex-start;
+  gap           : 14px;
+  margin-bottom : 1.25rem;
+}
+
+/* Checkbox label — spec: visible label + input[type=checkbox] */
+.cb-label {
+  display         : flex;
+  flex-direction  : column;
+  align-items     : center;
+  gap             : 5px;
+  flex-shrink     : 0;
+  padding-top     : 3px;
+  cursor          : pointer;
+  user-select     : none;
+}
+
+.cb-label input[type="checkbox"] {
+  width        : 19px;
+  height       : 19px;
+  accent-color : var(--teal);
+  cursor       : pointer;
+  flex-shrink  : 0;
+}
+
+.cb-label input[type="checkbox"]:focus-visible {
+  outline        : 2px solid var(--teal);
+  outline-offset : 3px;
+  border-radius  : 3px;
+}
+
+.cb-text {
+  font-size      : 9.5px;
+  font-weight    : 600;
+  text-transform : uppercase;
+  letter-spacing : .07em;
+  color          : var(--ink-3);
+  white-space    : nowrap;
+}
+
+.card-title-block {
+  flex       : 1;
+  min-width  : 0;
+}
+
+/* Spec: h2 or h3 */
+.card-title {
+  font-family   : 'Syne', sans-serif;
+  font-size     : 18px;
+  font-weight   : 700;
+  color         : var(--ink-1);
+  line-height   : 1.3;
+  margin-bottom : 7px;
+  transition    : color var(--ease), text-decoration var(--ease);
+}
+
+/* Spec: <p> */
+.card-description {
+  font-size   : 13.5px;
+  color       : var(--ink-2);
+  line-height : 1.65;
+  transition  : color var(--ease);
+}
+
+/* ── Badges ─────────────────────────────────────────────────── */
+.card-badges {
+  display       : flex;
+  flex-wrap     : wrap;
+  gap           : 7px;
+  margin-bottom : 1.25rem;
+}
+
+.badge {
+  font-family    : 'Instrument Sans', sans-serif;
+  font-size      : 11px;
+  font-weight    : 600;
+  letter-spacing : .05em;
+  text-transform : uppercase;
+  padding        : 4px 10px;
+  border-radius  : var(--r-sm);
+  border         : 1px solid transparent;
+}
+
+/* Priority — spec: shows Low / Medium / High */
+.badge-priority {
+  background   : var(--red-dim);
+  color        : var(--red);
+  border-color : var(--red-bdr);
+}
+
+/* Status */
+.badge-status {
+  background   : var(--blue-dim);
+  color        : var(--blue);
+  border-color : var(--blue-bdr);
+  transition   : background var(--ease), color var(--ease), border-color var(--ease);
+}
+
+/* ── Meta rows ──────────────────────────────────────────────── */
+.card-meta {
+  display               : grid;
+  grid-template-columns : 1fr 1fr;
+  gap                   : 10px;
+  margin-bottom         : 1.25rem;
+  padding               : 1rem;
+  background            : rgba(255,255,255,.03);
+  border                : 1px solid rgba(255,255,255,.05);
+  border-radius         : var(--r-md);
+}
+
+.meta-row {
+  display     : flex;
+  align-items : center;
+  gap         : 6px;
+}
+
+.meta-icon {
+  flex-shrink : 0;
+  color       : var(--ink-3);
+}
+
+.meta-label {
+  font-size      : 10px;
+  font-weight    : 600;
+  text-transform : uppercase;
+  letter-spacing : .07em;
+  color          : var(--ink-3);
+  flex-shrink    : 0;
+}
+
+/* Spec: <time> element */
+.meta-value {
+  font-size   : 12.5px;
+  font-weight : 500;
+  color       : var(--ink-2);
+}
+
+/* Time remaining colour states */
+.meta-countdown           { color: var(--ink-1); font-weight: 600; }
+.meta-countdown.overdue   { color: var(--red);   }
+.meta-countdown.due-soon  { color: var(--amber); }
+.meta-countdown.on-track  { color: var(--teal);  }
+
+/* ── Tags ───────────────────────────────────────────────────── */
+/* Spec: ul role=list of li chips */
+.card-tags {
+  list-style    : none;
+  display       : flex;
+  flex-wrap     : wrap;
+  gap           : 6px;
+  margin-bottom : 1.5rem;
+}
+
+.tag {
+  font-family   : 'Instrument Sans', monospace;
+  font-size     : 12px;
+  font-weight   : 500;
+  padding       : 3px 10px;
+  border-radius : var(--r-full);
+  background    : rgba(255,255,255,.04);
+  border        : 1px solid rgba(255,255,255,.08);
+  color         : var(--ink-2);
+  transition    : border-color var(--ease), color var(--ease);
+}
+
+.tag:hover {
+  border-color : rgba(255,255,255,.16);
+  color        : var(--ink-1);
+}
+
+/* ── Footer buttons ─────────────────────────────────────────── */
+/* Spec: real <button> elements with accessible names */
+.card-footer {
+  display         : flex;
+  justify-content : flex-end;
+  gap             : 8px;
+  border-top      : 1px solid rgba(255,255,255,.06);
+  padding-top     : 1.25rem;
+}
+
+.btn {
+  display       : inline-flex;
+  align-items   : center;
+  gap           : 6px;
+  padding       : 8px 16px;
+  border-radius : var(--r-md);
+  border        : 1px solid rgba(255,255,255,.10);
+  background    : rgba(255,255,255,.04);
+  font-family   : 'Instrument Sans', sans-serif;
+  font-size     : 13px;
+  font-weight   : 500;
+  color         : var(--ink-2);
+  cursor        : pointer;
+  transition    : background var(--ease), border-color var(--ease),
+                  color var(--ease), transform .1s;
+}
+
+.btn:hover {
+  background   : rgba(255,255,255,.08);
+  border-color : rgba(255,255,255,.18);
+  color        : var(--ink-1);
+}
+
+.btn:active { transform: scale(.97); }
+
+.btn:focus-visible {
+  outline        : 2px solid var(--teal);
+  outline-offset : 2px;
+}
+
+/* Delete button */
+.btn-delete {
+  border-color : var(--red-bdr);
+  color        : var(--red);
+  background   : var(--red-dim);
+}
+
+.btn-delete:hover {
+  background   : rgba(240,96,96,.18);
+  border-color : rgba(240,96,96,.50);
+  color        : #ff8080;
+}
+
+/* ── Completed state ─────────────────────────────────────────── */
+/* Spec: checkbox toggle → strike through title + status → "Done" */
+.card.is-done .card-title {
+  text-decoration : line-through;
+  color           : var(--ink-3);
+}
+
+.card.is-done .card-description {
+  color : var(--ink-3);
+}
+
+/* Done status badge overrides (set via JS class swap) */
+.badge-status.done {
+  background   : var(--green-dim);
+  color        : var(--green);
+  border-color : var(--green-bdr);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+/* Tablet / desktop: card sits centred, max 480px */
+@media (min-width: 521px) {
+  .card { max-width: 480px; }
+}
+
+/* Mobile: full width, stacked, comfortable padding */
+@media (max-width: 520px) {
+  .page { padding: 1rem 0.75rem; align-items: flex-start; }
+
+  .card {
+    max-width     : 100%;
+    border-radius : var(--r-md);
+    padding       : 1.25rem;
+  }
+
+  .card-title { font-size: 16px; }
+
+  /* Stack meta rows vertically on small screens */
+  .card-meta {
+    grid-template-columns : 1fr;
+    gap                   : 8px;
+  }
+}
+
+/* Very small (320px) — no overflow */
+@media (max-width: 360px) {
+  .card { padding: 1rem; }
+  .card-footer { flex-wrap: wrap; }
+  .btn { flex: 1; justify-content: center; }
+}
