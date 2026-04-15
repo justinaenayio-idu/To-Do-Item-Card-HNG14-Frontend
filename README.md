@@ -11,7 +11,7 @@ A clean, accessible, spec-compliant Todo Item Card built with vanilla HTML, CSS,
 
 ## Repository
 
-📁 [https://github.com/justinaenayio-idu/HNG14-FrontendTrack-Task](https://github.com/justinaenayio-idu/HNG14-FrontendTrack-Task)
+📁 [[https://github.com/justinaenayio-idu/HNG14-FrontendTrack-Task](https://github.com/justinaenayio-idu/HNG14-FrontendTrack-Task)](https://github.com/justinaenayio-idu/To-Do-Item-Card-HNG14-Frontend.git)
 
 
 ## Project Structure
