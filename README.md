@@ -6,12 +6,12 @@ A clean, accessible, spec-compliant Todo Item Card built with vanilla HTML, CSS,
 
 ## Live Demo
 
-🔗 [https://justinaenayio-idu.github.io/HNG14-FrontendTrack-Task/](https://justinaenayio-idu.github.io/HNG14-FrontendTrack-Task/)
+🔗 [https://justinaenayio-idu.github.io/To-Do-Item-Card-HNG14-Frontend/](https://justinaenayio-idu.github.io/To-Do-Item-Card-HNG14-Frontend/)
 
 
 ## Repository
 
-📁 [[https://github.com/justinaenayio-idu/HNG14-FrontendTrack-Task](https://github.com/justinaenayio-idu/HNG14-FrontendTrack-Task)](https://github.com/justinaenayio-idu/To-Do-Item-Card-HNG14-Frontend.git)
+📁 [https://github.com/justinaenayio-idu/To-Do-Item-Card-HNG14-Frontend](https://github.com/justinaenayio-idu/To-Do-Item-Card-HNG14-Frontend.git)
 
 
 ## Project Structure
